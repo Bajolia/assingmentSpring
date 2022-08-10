@@ -14,7 +14,7 @@ public class ProfileController {
     private ProfileService profileService;
 
     @RequestMapping(method = RequestMethod.POST, value = "api/profile")
-    public int addProfile(@RequestBody Profile profile){
+    public String addProfile(@RequestBody Profile profile){
         return profileService.addProfile(profile);
     }
 
@@ -23,14 +23,14 @@ public class ProfileController {
         return profileService.getAllProfiles();
     }
 
-    @RequestMapping("api/getProfile/{id}")
-    public Profile getProfile(@PathVariable int id){
-        return profileService.getProfile(id);
+    @RequestMapping("api/getProfile/{requestId}")
+    public Profile getProfile(@PathVariable String requestId){
+        return profileService.getProfile(requestId);
     }
 
-//    @RequestMapping(method = RequestMethod.PUT, value = "api/profile/{id}")
-//    public void updateProfile(@RequestBody Profile profile, @PathVariable int id){
-//        profileService.updateProfile(profile,id);
-//    }
+    @RequestMapping(method = RequestMethod.PUT, value = "api/profile/{requestId}")
+    public String updateProfile(@RequestBody Profile profile, @PathVariable String requestId){
+        return profileService.updateProfile(profile,requestId);
+    }
 
 }

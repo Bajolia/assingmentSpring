@@ -3,24 +3,26 @@ package com.example.profile.demoProfile.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Document(collection = "FWRequest")
-public class Profile {
+@Document(collection = "mycollection")
+public class Input {
     @Id
     private String requestId;
     private String vertical;
     private String make;
     private String model;
-    //private List<Integer> insurer =new ArrayList<>();
+    private List<Insurer> insurerList;
 
-    public Profile(String vertical, String make, String model,String requestId) {
+    public Input() {
+    }
+
+    public Input(String requestId, String vertical, String make, String model, List<Insurer> insurerList) {
+        this.requestId = requestId;
         this.vertical = vertical;
         this.make = make;
         this.model = model;
-        this.requestId = requestId;
-        //this.insurer = insurer;
+        this.insurerList = insurerList;
     }
 
     public String getRequestId() {
@@ -55,11 +57,11 @@ public class Profile {
         this.model = model;
     }
 
-//    public List<Integer> getInsurer() {
-//        return insurer;
-//    }
-//
-//    public void setInsurer(List<Integer> insurer) {
-//        this.insurer = insurer;
-//    }
+    public List<Insurer> getInsurerList() {
+        return insurerList;
+    }
+
+    public void setInsurerList(List<Insurer> insurerList) {
+        this.insurerList = insurerList;
+    }
 }
